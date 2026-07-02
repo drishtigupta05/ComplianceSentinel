@@ -1,0 +1,398 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* Core brand - Navy & Slate */
+  --color-navy:        #0A192F;
+  --color-navy-light:  #0F2440;
+  --color-navy-border: #1B3358;
+  --color-canvas:      #FAFBFD;
+
+  /* Teal */
+  --color-cs-teal:       #0D9488;
+  --color-cs-teal-hover: #0F766E;
+  --color-cs-teal-faint: #F0FDFA;
+  --color-cs-teal-dim:   #CCFBF1;
+
+  /* Status (sparingly used) */
+  --color-cs-green:       #0F766E;
+  --color-cs-green-light: #F0FDFA;
+  --color-cs-amber:       #D97706;
+  --color-cs-amber-light: #FEF3C7;
+  --color-cs-red:         #B91C1C;
+  --color-cs-red-light:   #FEE2E2;
+}
+
+/* ── CSS Custom Properties ────────────────────────────────────── */
+:root {
+  --radius-xl:    16px;
+  --radius-lg:    12px;
+  --radius-md:    8px;
+  --radius-sm:    6px;
+  --radius-xs:    4px;
+
+  --shadow-card:  0 1px 3px rgba(10, 25, 47, 0.02), 0 4px 20px rgba(10, 25, 47, 0.04);
+  --shadow-hover: 0 4px 16px rgba(10, 25, 47, 0.05), 0 16px 40px rgba(10, 25, 47, 0.08);
+  --shadow-sm:    0 1px 2px rgba(10, 25, 47, 0.02);
+
+  --transition-fast:   all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base:   all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --border-subtle: rgba(10, 25, 47, 0.05);
+  --border-default: rgba(10, 25, 47, 0.08);
+}
+
+/* ── Base ─────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAFBFD;
+    color: #0F1117;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono) !important;
+    font-size: 0.9em;
+    letter-spacing: -0.02em;
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(10, 25, 47, 0.1); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(10, 25, 47, 0.2); }
+}
+
+/* ── Utility Animations ───────────────────────────────────────── */
+@layer utilities {
+  .card-base {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-base);
+  }
+
+  .card-hover:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+    border-color: rgba(10, 25, 47, 0.12);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    background: var(--color-navy);
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid var(--color-navy);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-primary:hover {
+    background: #152E52;
+    border-color: #152E52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(10, 25, 47, 0.12);
+  }
+
+  .btn-teal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    background: var(--color-cs-teal);
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid var(--color-cs-teal);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-teal:hover {
+    background: var(--color-cs-teal-hover);
+    border-color: var(--color-cs-teal-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: #4A5568;
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid var(--border-default);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+  }
+
+  .btn-ghost:hover {
+    background: #F7FAFC;
+    color: var(--color-navy);
+    border-color: rgba(10, 25, 47, 0.18);
+  }
+
+  .input-base {
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-default);
+    background: #ffffff;
+    font-size: 13.5px;
+    color: #0F1117;
+    outline: none;
+    transition: var(--transition-fast);
+    font-family: var(--font-sans);
+  }
+
+  .input-base:focus {
+    border-color: var(--color-navy);
+    box-shadow: 0 0 0 3px rgba(10, 25, 47, 0.05);
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-decoration: none;
+    color: #4A5568;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .nav-item:hover {
+    color: var(--color-navy);
+    background: rgba(10, 25, 47, 0.03);
+  }
+
+  .nav-item.active {
+    color: var(--color-navy);
+    background: rgba(10, 25, 47, 0.05);
+    font-weight: 600;
+  }
+}
+
+/* ── Keyframes & Animations ───────────────────────────────────── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ── Premium Redesign Animations (Vercel/Linear Style) ───────── */
+
+/* 1. Hero Text Cinematic Reveal */
+@keyframes hero-line-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-reveal-line {
+  opacity: 0;
+  animation: hero-line-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Tactile Button Physics */
+.btn-tactile {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-tactile:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(10, 25, 47, 0.1);
+}
+
+.btn-tactile:active {
+  transform: translateY(-1px) scale(0.97);
+  transition: transform 0.08s ease;
+}
+
+/* 3. Hero Background Ambient Glow Loop */
+@keyframes ambient-glow {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) rotate(120deg) scale(1.15);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) rotate(360deg) scale(1);
+  }
+}
+
+.ambient-mesh-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  animation: ambient-glow 25s infinite ease-in-out;
+  transition: opacity 0.5s ease;
+}
+
+/* 4. Glassmorphic Floating Header */
+.header-glass {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+  backdrop-filter: blur(20px) -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(10, 25, 47, 0.05) !important;
+  box-shadow: 0 4px 30px rgba(10, 25, 47, 0.03) !important;
+  height: 60px !important;
+}
+
+/* 5. Nav Link Center Underline Reveal */
+.nav-link-animated {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: var(--color-navy);
+  transform-origin: bottom center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-animated:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-link-animated:hover {
+  color: var(--color-navy) !important;
+  transform: translateY(-1px);
+}
+
+/* 6. Scroll Trigger Reveals */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-element.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* 7. Premium Feature Cards */
+.card-premium {
+  background: #ffffff;
+  border: 1px solid rgba(10, 25, 47, 0.04);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-premium:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(13, 148, 136, 0.22);
+}
+
+/* 8. Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal-line,
+  .btn-tactile,
+  .ambient-mesh-glow,
+  .nav-link-animated::after,
+  .reveal-element,
+  .card-premium,
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-slide-in {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .reveal-element {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

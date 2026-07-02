@@ -1,0 +1,60 @@
+export const BREACH_CASES = [
+  {
+    id: 'BREACH-001',
+    title: 'Customer Data Exposure — API Misconfiguration',
+    description:
+      'A misconfigured REST API endpoint inadvertently exposed customer PII — including names, email addresses, phone numbers, and transaction metadata — to unauthenticated HTTP requests for approximately 6 hours before detection and remediation.',
+    reportedAt: '2024-07-15T02:30:00.000Z',
+    discoveredAt: '2024-07-15T08:45:00.000Z',
+    affectedCount: 12000,
+    affectedUserIds: [
+      'USR-001', 'USR-002', 'USR-003', 'USR-004', 'USR-005',
+      'USR-006', 'USR-007', 'USR-008', 'USR-009', 'USR-010',
+      'USR-011', 'USR-012',
+    ],
+    severity: 'critical',
+    certInRef: 'CERT-IN/2024/INC-09872',
+    dataCategories: ['Full Name', 'Email Address', 'Phone Number', 'Transaction Metadata'],
+    notificationDeadline: '2024-07-21T23:59:59.000Z',
+    systemAffected: 'Customer Onboarding API (v3.1)',
+    remediated: true,
+  },
+  {
+    id: 'BREACH-002',
+    title: 'Internal Database Snapshot Leak — Third-Party Vendor',
+    description:
+      'A database snapshot shared with a contracted analytics vendor was inadvertently uploaded to a publicly accessible cloud storage bucket. The bucket remained open for 3 days before being discovered during a routine third-party audit.',
+    reportedAt: '2024-08-22T11:00:00.000Z',
+    discoveredAt: '2024-08-22T09:15:00.000Z',
+    affectedCount: 4800,
+    affectedUserIds: [
+      'USR-007', 'USR-010', 'USR-013', 'USR-014',
+      'USR-015', 'USR-016', 'USR-017', 'USR-018',
+    ],
+    severity: 'high',
+    certInRef: 'CERT-IN/2024/INC-11543',
+    dataCategories: ['Email Address', 'Usage Analytics', 'Demographic Data', 'Account Type'],
+    notificationDeadline: '2024-08-25T23:59:59.000Z',
+    systemAffected: 'Analytics Data Warehouse (Snapshot 2024-Q2)',
+    remediated: true,
+  },
+  {
+    id: 'BREACH-003',
+    title: 'Ransomware Attack — Payment Processing Module',
+    description:
+      'A targeted ransomware attack infiltrated the payment processing module via a compromised vendor credential, potentially exposing payment card details, billing addresses, and transaction IDs of affected users. Forensic investigation ongoing.',
+    reportedAt: '2024-10-05T19:00:00.000Z',
+    discoveredAt: '2024-10-05T18:30:00.000Z',
+    affectedCount: 2300,
+    affectedUserIds: [
+      'USR-001', 'USR-004', 'USR-009',
+      'USR-012', 'USR-015', 'USR-018',
+    ],
+    severity: 'critical',
+    certInRef: 'CERT-IN/2024/INC-14891',
+    dataCategories: ['Payment Card Data (PCI-DSS)', 'Billing Address', 'Transaction IDs', 'CVV Tokens'],
+    notificationDeadline: '2024-10-08T23:59:59.000Z',
+    systemAffected: 'Payment Processing Module (PayGateway v2.7)',
+    remediated: false,
+  },
+]
